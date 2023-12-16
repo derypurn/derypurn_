@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="fontawesome-free-6.4.2-web/fontawesome-free-6.4.2-web/css/all.min.css">
+   <script src="script/script.js"></script>
+   
+    <title>My Portofolio</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="menu-toggle" onclick="toggleMenu()">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+      </div>
+      <div class="nav-items">
+          <a href="#home" onclick="navigate('home')">Home</a>
+          <a href="#about" onclick="navigate('about')">About</a>
+          <a href="#services" onclick="navigate('service')">Service</a>
+          <a href="#contact" onclick="navigate('contact')">Contact</a>
+      </div>
+  </div>
+
+    <span id="home" style="margin-top: 0;"></span>
+    <div class="introduc">
+      <p class="sub-judul">Grafis Design & Programmer</p>
+      <h1>
+        Hi, I'm <span style="color: #e31b59;">Dery</span> Purnama <br />
+        <small>From Majalengka</small>
+      </h1>
+    </div>
+
+    <div class="muka">
+      <img src="img/dery.png" />
+    </div>
+    <hr />
+
+    <div id="about">
+      <div class="row">
+        <div class="about-col-1">
+          <img src="img/dery2.jpg" />
+        </div>
+        <div class="about-col-2">
+          <h1 class="sub-title">About Me</h1>
+
+          <p class="p-about">
+           Saya Dery Purnama Nurdiyansyah, Seorang Pelajar SMKN 1 Maja Jurusan RPL sejak tahun 2022. Saya memiliki berbagai kemampuan dalam bidang IT (sekedar bisa). Selain itu, dapat dilihat dalam tab dibawah ini. <br>
+           <br>
+           <br>
+           
+           <table>
+            <tr>
+              <td><b>Tanggal Lahir &emsp; &emsp; &emsp; :</b></td>
+              <td>  &emsp;09 September 2006</td>
+            </tr>
+
+            <tr>
+              <td><b>Umur &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;:</b></td>
+              <td> &emsp;17 Tahun</td>
+            </tr>
+
+            <tr>
+              <td><b>Alamat &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp; :</b></td>
+              <td> &emsp;Desa Pasanggrahan, Kec. Maja, Kab. Majalengka</td>
+            </tr>
+            <tr>
+              <td><b>Telepon &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; :</b></td>
+              <td> &emsp;08-7722-6688-17</td>
+            </tr>
+           </table> 
+          </p>
+
+          <div class="tab-titles">
+            <p class="tab-links active-link" onclick="opentab('skills')">
+              Skills
+            </p>
+            <p class="tab-links" onclick="opentab('experience')">Experience</p>
+            <p class="tab-links" onclick="opentab('certificate')">Certificate</p>
+            <p class="tab-links" onclick="opentab('work')">work</p>
+
+          </div>
+
+          <div class="tab-contents active-tab" id="skills">
+            <ul>
+              <li>
+                <span>PROGRAMMER</span>
+                <li>HTML | CSS | PHP | Javascript | C++ </li>
+      
+              </li>
+              <li><span>DESIGN GRAFIS</span><br />Corel Draw | Photoshop | Ilustrator | Pixellab | Canva</li>
+
+              <li><Span>OFFICE</Span>
+                <li>Excell | Word | PowerPoint | Mysql</li>
+              </li>
+            </ul>
+          </div>
+          <div class="tab-contents" id="experience">
+            <ul>
+              <li><span>Ketua OSIS</span><br>SMPN 3 MAJA Tahun 2021-2022</li>
+              <li><span>Ketua Umum PASKIBRA</span><br>BRATA SAKIRA Tahun 2021-2022</li>
+              <li><span>KURIN GameLab</span> <br>Salatiga, Tahun 2023</li>
+            </ul>
+          </div>
+          <div class="tab-contents" id="certificate">
+            <ul>
+              <li><span>KURIN GameLab</span> &emsp; &emsp; &emsp;<span>IEEE 2023</span>
+                <br> <img src="img/gamelab.jpg" alt=""> &emsp;<img src="img/ieee.png" alt=""></li>
+              <li>
+                <span>Literasi Digital</span><br><img src="img/literasi.png" alt="">
+              </li>
+            </ul>
+          </div>
+          <div class="tab-contents" id="work">
+            <ul>
+              <li><span>Website NurdinShop</span><br><a href="https://derypurn.github.io/officialnurdinshop.github.io/" target="_blank">Preview </a></li>
+            <li><span>Website Portofolio</span><br><a href="https://derypurn.github.io/derypurn_/" target="_blank">Preview</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div id="services">
+      <div class="container">
+        <h1 class="sub-title">My Services</h1>
+        <div class="services-list">
+          <div>
+            <i class="fa-solid fa-code"></i>
+            <h2>Web Design</h2>
+            <p>
+              Layanan desain web kami membawa inovasi dan kreativitas untuk membuat situs yang tidak hanya estetis, tetapi juga berfungsi dengan baik. Setiap halaman web dirancang untuk mencerminkan identitas unik bisnis Anda.
+            </p>
+            <a href="#">Learn More</a>
+          </div>
+          <div>
+            <i class="fa-solid fa-pen-nib"></i>
+            <h2>Design Grafis</h2>
+            <p>
+              Dengan tim desain grafis kami, setiap elemen visual dihasilkan dengan keahlian tinggi. Mulai dari logo hingga materi pemasaran, kami memastikan setiap desain menciptakan kesan yang tak terlupakan.</p>
+            <a href="#">Learn More</a>
+          </div>
+          <div>
+            <i class="fa-brands fa-app-store"></i>
+            <h2>App Design</h2>
+            <p>Desain aplikasi kami tidak hanya menarik perhatian, tetapi juga dioptimalkan untuk responsivitas. Dengan fokus pada antarmuka pengguna yang intuitif, kami menciptakan pengalaman yang menyenangkan untuk pengguna aplikasi Anda.</p>
+          <a href="#">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="contact-left">
+            <h1 class="sub-title">Contact Me</h1>
+            <p><i class="fa-solid fa-paper-plane"></i><a href="mailto:derypurnama070906@gmail.com" target="_blank">derypurnama070906@gmail.com</a></p>
+            <p><i class="fa-sharp fa-solid fa-phone"></i><a href="http://wa.me/087722668817" target="_blank">08-7722-6688-17</a></p>
+            <div class="sosial-icons">
+              <a href="https://www.facebook.com/dery.purnama.942" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://instagram.com/derypurn_?igshid=NGVhN2U2NjQ0Yg==" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#"><i class="fa-brands fa-twitter"></i></a>
+              <a href="https://www.threads.net/@derypurn_" target="_blank"><i class="fa-brands fa-threads"></i></a>
+              <a href="https://ngl.link/@derypurn_" target="_blank"><i class="fa fa-meh"></i></a>
+            </div>
+            <a href="img/cv dery.png" download class="btn btn2">DOWNLOAD CV</a>
+          </div>
+          <div class="contact-right">
+            <form>
+              <input type="text" name="nama" placeholder="Your Name" required>
+              <input type="email" name="email" placeholder="Your Email" required>
+              <textarea rows="6" placeholder="Your Message"></textarea>
+              <button type="submit" class="btn2">submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+     
+    </div>
+  </body>
+</html>
