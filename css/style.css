@@ -141,22 +141,22 @@ a:hover {
   color: #0b5ed7;
 }
 .timeline-item.smkn1maja::before {
-  background-image: url("img/stemdja.png");
+  background-image: url("../img/stemdja.png");
 }
 .timeline-item.dreyerx::before {
-  background-image: url("img/LogoOnlyPNG.png");
+  background-image: url("../img/LogoOnlyPNG.png");
 }
 .timeline-item.venta::before {
-  background-image: url("img/Gradient.png");
+  background-image: url("../img/Gradient.png");
 }
 .timeline-item.unma::before {
-  background-image: url("img/LOGO\ FT\ TRANSPARAN\ WARNA.png");
+  background-image: url("../img/LOGO\ FT\ TRANSPARAN\ WARNA.png");
 }
 .timeline-item.negaza::before {
-  background-image: url("img/negaza.png");
+  background-image: url("../img/negaza.png");
 }
 .timeline-item.psg2::before {
-  background-image: url("img/psg2.png");
+  background-image: url("../img/psg2.png");
 }
 section {
   margin: 0 auto;
