@@ -48,61 +48,168 @@
       </div>
     </nav>
 
-    <div class="container py-5">
-      <header class="text-center mb-5" data-aos="fade-down">
-        <h1 class="display-4 fw-bold">Dery Purnama Nurdiyansyah</h1>
-        <h2 class="text-animated">
-          <span class="typing-text display-5 fw-bold"></span
-          ><span class="cursor display-5 fw-bold">|</span>
-        </h2>
+   <div class="container py-5 position-relative overflow-hidden" id="starfield-section">
+      <!-- Starfield Canvas -->
+      <canvas id="starfield-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+      <header class="text-center mb-5" data-aos="fade-down" style="position:relative;z-index:1;">
+      <h1 class="display-4 fw-bold">Dery Purnama Nurdiyansyah</h1>
+      <h2 class="text-animated"></h2>
+        <span class="typing-text display-5 fw-bold" style="color: rgba(255, 255, 255, 0.2);"></span
+        ><span class="cursor display-5 fw-bold">|</span>
+      </h2>
       </header>
-      <div class="text-center">
-        <a
-          href="https://drive.google.com/file/d/1HgzwfTKOWVhaJgBXgrvTmbMrIl5Y1Ln8/view?usp=drive_link"
-          target="_blank"
-          class="btn btn-primary mt-3"
-          style="
-            margin-bottom: 10vh;
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-            font-weight: bold;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-          "
-          download
-        >
-          <i class="fa-solid fa-file-arrow-down"></i> &nbsp; Unduh Resume
-          <span
-            style="
-              content: '';
-              position: absolute;
-              top: 0;
-              left: -100%;
-              width: 100%;
-              height: 100%;
-              background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.5),
-                transparent
-              );
-              transition: left 0.5s ease;
-            "
-            class="hover-effect"
-          ></span>
-        </a>
+      <div class="text-center" style="position:relative;z-index:1;">
+      <a
+        href="https://drive.google.com/file/d/1SMJR2ejJ-lPKb8oXNDI2FLeqDiyLCSIq/view?usp=sharing"
+        target="_blank"
+        class="btn btn-primary mt-3"
+        style="
+        margin-bottom: 10vh;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        font-weight: bold;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        "
+        download
+      >
+        <i class="fa-solid fa-file-arrow-down"></i> &nbsp; Unduh Resume
+        <span
+        style="
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.5),
+          transparent
+          );
+          transition: left 0.5s ease;
+        "
+        class="hover-effect"
+        ></span>
+      </a>
       </div>
       <style>
-        .btn:hover .hover-effect {
-          left: 100%;
-        }
+      .btn:hover .hover-effect {
+        left: 100%;
+      }
+      #starfield-section {
+        background: transparent;
+      }
+      #starfield-canvas {
+        display: block;
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        z-index: 0;
+        pointer-events: none;
+      }
       </style>
+      <script>
+      // Starfield effect with moving stars
+      (function() {
+        const section = document.getElementById('starfield-section');
+        const canvas = document.getElementById('starfield-canvas');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        const STAR_COUNT = 50;
+        let width, height, dpr;
+
+        function resize() {
+        dpr = window.devicePixelRatio || 1;
+        width = section.offsetWidth;
+        height = section.offsetHeight;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.scale(dpr, dpr);
+        }
+
+        function randomStar() {
+        // Randomize direction and speed for movement
+        const angle = Math.random() * 2 * Math.PI;
+        const speed = Math.random() * 0.25 + 0.05;
+        return {
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 1.2 + 0.3,
+          alpha: Math.random() * 0.5 + 0.5,
+          twinkle: Math.random() * 0.05 + 0.01,
+          dx: Math.cos(angle) * speed,
+          dy: Math.sin(angle) * speed
+        };
+        }
+
+        function createStars() {
+        stars = [];
+        for (let i = 0; i < STAR_COUNT; i++) {
+          stars.push(randomStar());
+        }
+        }
+
+        function drawStars() {
+        ctx.clearRect(0, 0, width, height);
+        for (let star of stars) {
+          ctx.save();
+          ctx.globalAlpha = star.alpha;
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI);
+          ctx.fillStyle = "#fff";
+          ctx.shadowColor = "#fff";
+          ctx.shadowBlur = 8;
+          ctx.fill();
+          ctx.restore();
+
+          // Twinkle
+          star.alpha += (Math.random() - 0.5) * star.twinkle;
+          if (star.alpha < 0.3) star.alpha = 0.3;
+          if (star.alpha > 1) star.alpha = 1;
+
+          // Move star
+          star.x += star.dx;
+          star.y += star.dy;
+
+          // Wrap around edges for infinite space effect
+          if (star.x < 0) star.x = width;
+          if (star.x > width) star.x = 0;
+          if (star.y < 0) star.y = height;
+          if (star.y > height) star.y = 0;
+        }
+        }
+
+        function animate() {
+        drawStars();
+        requestAnimationFrame(animate);
+        }
+
+        function init() {
+        resize();
+        createStars();
+        animate();
+        }
+
+        window.addEventListener('resize', () => {
+        resize();
+        createStars();
+        });
+
+        // Wait for section to be visible in DOM
+        setTimeout(init, 300);
+      })();
+      </script>
 
       <hr />
       <section id="about" data-aos="fade-up" class="mb-5">
