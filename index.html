@@ -189,46 +189,162 @@
 
       <section class="mt-5" data-aos="zoom-in">
         <h3 class="section-title">Certificate</h3>
-        <div class="row row-cols-2 row-cols-md-3 g-2">
-          <div class="col text-center">
-            <div class="certificate-container">
-              <img src="img/PKL (1).jpg" class="img-fluid certificate-img" />
-              <p class="certificate-description">PKL Certificate Front</p>
-            </div>
+        <div id="certificate-list" class="row row-cols-2 row-cols-md-3 g-2">
+          <!-- Certificate items will be rendered here -->
+        </div>
+        <div class="d-flex justify-content-center mt-3 gap-2"></div>
+          <button id="prev-cert" class="btn btn-outline-light btn-sm px-3" style="border-radius: 20px; opacity: 0.7;">
+        <i class="fa fa-chevron-left"></i>
+          </button>
+          <button id="next-cert" class="btn btn-outline-light btn-sm px-3" style="border-radius: 20px; opacity: 0.7;">
+        <i class="fa fa-chevron-right"></i>
+          </button>
+        </div>
+        <!-- Modal Preview -->
+        <div class="modal fade" id="certPreviewModal" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content bg-dark border-0">
+          <div class="modal-body p-0 position-relative">
+            <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+            <img id="certPreviewImg" src="" alt="Certificate Preview" class="w-100" style="max-height:90vh;object-fit:contain;display:block;margin:auto;" />
+            <div class="text-center text-white mt-2" id="certPreviewDesc"></div>
           </div>
-          <div class="col text-center">
-            <div class="certificate-container">
-              <img src="img/PKL (2).jpg" class="img-fluid certificate-img" />
-              <p class="certificate-description">PKL Certificate Behind</p>
-            </div>
-          </div>
-          <div class="col text-center">
-            <div class="certificate-container">
-              <img src="img/IEE (1).jpg" class="img-fluid certificate-img" />
-              <p class="certificate-description">IEE Certificate Front</p>
-            </div>
-          </div>
-          <div class="col text-center">
-            <div class="certificate-container">
-              <img src="img/IEE (2).jpg" class="img-fluid certificate-img" />
-              <p class="certificate-description">IEE Certificate Behind</p>
-            </div>
-          </div>
-          <div class="col text-center">
-            <div class="certificate-container">
-              <img src="img/gamelab.jpg" class="img-fluid certificate-img" />
-              <p class="certificate-description">Gamelab Certificate</p>
-            </div>
-          </div>
-          <div class="col text-center">
-            <div class="certificate-container">
-              <img src="img/literasi.png" class="img-fluid certificate-img" />
-              <p class="certificate-description">Literacy Certificate</p>
-            </div>
+        </div>
           </div>
         </div>
       </section>
+      <script>
+        // Sertifikat dummy (ganti dengan data asli jika ada)
+        const certificates = [
+          { img: "img/PKL (1).jpg", desc: "PKL Front" },
+          { img: "img/PKL (2).jpg", desc: "PKL Behind" },
+          { img: "img/IEE (1).jpg", desc: "IEEE UPI Front" },
+          { img: "img/IEE (2).jpg", desc: "IEEE UPI Behind" },
+          { img: "img/gamelab.jpg", desc: "Gamelab" },
+          { img: "img/literasi.png", desc: "Literacy Digital KOMINFO" },
+          { img: "img/sertifikat ukk_page-0001.jpg", desc: "Uji Kompetensi Keahlian RPL Front" },
+          { img: "img/sertifikat ukk_page-0002.jpg", desc: "Uji Kompetensi Keahlian RPL Behind" },
+          { img: "img/SERTIFIKAT PELATIHAN EXCEL BEBAS ERROR_page-0001.jpg", desc: "Pelatihan Excel Bebas Error" },
+          { img: "img/SERTIFIKAT PELATIHAN MICROSOFT WORD COPILOT__page-0001.jpg", desc: "Pelatihan Microsoft Word Copilot" }
+        ];
 
+        const certPerPage = 6;
+        let certPage = 0;
+
+        function renderCertificates() {
+          const start = certPage * certPerPage;
+          const end = start + certPerPage;
+          const certs = certificates.slice(start, end);
+
+          const certList = document.getElementById("certificate-list");
+          certList.innerHTML = certs.map((cert, idx) => `
+        <div class="col text-center">
+          <div class="certificate-container position-relative group">
+            <img src="${cert.img}" class="img-fluid certificate-img" alt="${cert.desc}" data-cert-idx="${start + idx}" />
+            <button class="preview-btn" data-cert-idx="${start + idx}" tabindex="-1" aria-label="Preview">
+          <i class="fa fa-search-plus"></i>
+            </button>
+            <p class="certificate-description">${cert.desc}</p>
+          </div>
+        </div>
+          `).join("");
+          document.getElementById("prev-cert").disabled = certPage === 0;
+          document.getElementById("next-cert").disabled = end >= certificates.length;
+
+          // Add preview event listeners
+          document.querySelectorAll('.certificate-img, .preview-btn').forEach(el => {
+        el.addEventListener('click', function(e) {
+          const idx = parseInt(this.getAttribute('data-cert-idx'));
+          const cert = certificates[idx];
+          document.getElementById('certPreviewImg').src = cert.img;
+          document.getElementById('certPreviewDesc').textContent = cert.desc;
+          const modal = new bootstrap.Modal(document.getElementById('certPreviewModal'));
+          modal.show();
+        });
+          });
+        }
+
+        document.getElementById("prev-cert").addEventListener("click", function() {
+          if (certPage > 0) {
+        certPage--;
+        renderCertificates();
+          }
+        });
+
+        document.getElementById("next-cert").addEventListener("click", function() {
+          if ((certPage + 1) * certPerPage < certificates.length) {
+        certPage++;
+        renderCertificates();
+          }
+        });
+
+        renderCertificates();
+      </script>
+      <style>
+        .certificate-container {
+          background: #0d1117;
+          border-radius: 25px;
+          padding: 10px;
+          margin-bottom: 10px;
+          position: relative;
+          overflow: hidden;
+        }
+        .certificate-img {
+          border-radius: 15px;
+          max-height: 180px;
+          object-fit: contain;
+          border: 1px solid rgba(255,255,255,0.2);
+          margin-bottom: 8px;
+          transition: filter 0.2s;
+          cursor: pointer;
+        }
+        .certificate-container:hover .certificate-img,
+        .certificate-container:focus-within .certificate-img {
+          filter: brightness(0.7);
+        }
+        .preview-btn {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) scale(0.8);
+          background: rgba(0,0,0,0.7);
+          color: #fff;
+          border: none;
+          border-radius: 50%;
+          padding: 12px 15px;
+          font-size: 1.3rem;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.2s, transform 0.2s;
+          z-index: 2;
+        }
+        .certificate-container:hover .preview-btn,
+        .certificate-container:focus-within .preview-btn {
+          opacity: 0.2;
+          pointer-events: auto;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        .preview-btn:focus {
+          outline: 2px solid #fff;
+        }
+        .certificate-description {
+          color: #fff;
+          font-size: 0.95rem;
+          margin-bottom: 0;
+        }
+        #prev-cert:disabled, #next-cert:disabled {
+          opacity: 0.3;
+          pointer-events: none;
+        }
+        /* Modal custom */
+        #certPreviewModal .modal-content {
+          background: #0d1117;
+          border-radius: 20px;
+        }
+        #certPreviewModal .btn-close {
+          filter: invert(1);
+        }
+      </style>
       <section id="projects" class="mt-5" data-aos="fade-up">
         <h2 class="section-title text-center text-white">Projects</h2>
         <div class="row row-cols-1 row-cols-md-2 g-4">
